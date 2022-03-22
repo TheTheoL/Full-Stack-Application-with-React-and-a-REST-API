@@ -9,17 +9,21 @@ import Header from './components/Header';
 
 export default class App extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      courses: [],
+      loading: true
+    };
+  }
 
-
-
+  componentDidMount() {
+    fetch(http://localhost:5000);
+}
 
   render() {
     return (
-      <div className="root">
-        <Header />
-
-      </div>
-
+      <Header />
 
 
 

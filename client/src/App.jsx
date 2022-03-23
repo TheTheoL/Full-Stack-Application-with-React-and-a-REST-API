@@ -22,7 +22,7 @@ export default class App extends Component {
         <div>
           <Header />
 
-          <Route path="/api/courses" component={Courses} />
+          <Route path="/" component={Courses} />
 
 
         </div>

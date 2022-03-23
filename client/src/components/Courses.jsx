@@ -3,12 +3,9 @@ import axios from 'axios';
 
 export default class Courses extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            courses: [],
-            loading: true
-        };
+    state = {
+        title={ course.title },
+        key={ course.id }
     }
 
     componentDidMount() {

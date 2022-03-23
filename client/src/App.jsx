@@ -18,28 +18,15 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
-        <BrowserRouter>
+      <BrowserRouter>
+        <div>
+          <Header />
 
           <Route path="/api/courses" component={Courses} />
 
-        </BrowserRouter>
 
-      </div>
-
-
-
-
-
-
-
-
-
+        </div>
+      </BrowserRouter>
     );
   }
-
-
-
-
-
 }

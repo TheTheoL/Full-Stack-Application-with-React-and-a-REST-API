@@ -1,4 +1,5 @@
-import React, { Component, useReducer } from 'react';
+import React, { Component } from 'react';
+import './Courses';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
@@ -10,15 +11,16 @@ export default class CourseDetail extends Component {
 
     state = {
 
-        courses: []
+        courses: [],
 
     }
 
-    componentDidMount() {
-        axios.get(`http://localhost:5000/api/courses/${id}`)
+    componentDidMount({ match }) {
+        axios.get(`http://localhost:5000/api/courses/${match.path}`)
             .then(res => {
                 this.setState({
-                    courses: res.data
+                    courses: res.data,
+                    users: res.data
                 })
             })
             .catch(error => {
@@ -29,11 +31,12 @@ export default class CourseDetail extends Component {
 
     render() {
         return (
+            // console.log(this.props)
 
             <main>
                 <div class="actions--bar">
                     <div class="wrap">
-                        <a class="button" href="update-course.html">Update Course</a>
+                        <NavLink className="button" to="/updatecourse"> Update Course</NavLink>
                         <a class="button" href="#">Delete Course</a>
                         <a class="button button-secondary" href="index.html">Return to List</a>
                     </div>
@@ -45,7 +48,7 @@ export default class CourseDetail extends Component {
                         <div class="main--flex">
                             <div>
                                 <h3 class="course--detail--title">Course</h3>
-                                <h4 class="course--name">{courses.title}</h4>
+                                <h4 class="course--name">{course.title}</h4>
                                 <p>By {user.firstName} {user.lastName}</p>
 
                                 <ReactMarkdown>{course.description}</ReactMarkdown>

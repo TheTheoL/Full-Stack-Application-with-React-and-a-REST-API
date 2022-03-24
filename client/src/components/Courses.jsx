@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
+
 export default class Courses extends Component {
 
     state = {
@@ -25,6 +26,7 @@ export default class Courses extends Component {
 
     render() {
         return (
+
             <div className="wrap main--grid">
                 {this.state.courses.map((course) => (
                     <NavLink key={course.id} className="course--module course--link" to={`/courses/${course.id}`}>

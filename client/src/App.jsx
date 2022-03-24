@@ -10,6 +10,7 @@ import {
 //imported components
 import Header from './components/Header';
 import Courses from './components/Courses';
+import CourseDetail from './components/CourseDetail';
 
 
 export default class App extends Component {
@@ -23,7 +24,7 @@ export default class App extends Component {
           <Header />
 
           <Route path="/" component={Courses} />
-
+          <Route path="/courses/:id" component={CourseDetail} />
 
         </div>
       </BrowserRouter>

@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown';
 export default function CourseDetail(props) {
 
     const [course, setCourse] = useState('')
+    const [description, setDescription] = useState('')
     useEffect(() => {
         axios.get("http://localhost:5000/api/courses/")
             .then(res => setState(res.data)
@@ -29,9 +30,9 @@ export default function CourseDetail(props) {
                         <div>
                             <h3 className="course--detail--title">Course</h3>
                             <h4 className="course--name">{course.title}</h4>
-                            <p>By {user.firstName} {user.lastName}</p>
+                            <p>By {this.user.firstName} {user.lastName}</p>
 
-                            <ReactMarkdown>{course.description}</ReactMarkdown>
+                            <ReactMarkdown>{this.course.description}</ReactMarkdown>
                         </div>
                         <div>
                             <h3 className="course--detail--title">Estimated Time</h3>

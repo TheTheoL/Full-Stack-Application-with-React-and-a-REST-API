@@ -3,7 +3,7 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
-export default function CourseDetail() {
+export default function CourseDetail(props) {
 
     const [course, setCourse] = useState('')
     useEffect(() => {

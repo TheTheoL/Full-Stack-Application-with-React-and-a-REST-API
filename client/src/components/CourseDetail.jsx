@@ -17,8 +17,8 @@ export default function CourseDetail(props) {
             <div className="actions--bar">
                 <div className="wrap">
                     <NavLink className="button" to="/updatecourse"> Update Course</NavLink>
-                    <a className="button" href="#">Delete Course</a>
-                    <a className="button button-secondary" href="index.html">Return to List</a>
+                    <NavLink className="button" href="#">Delete Course</NavLink>
+                    <NavLink className="button button-secondary" href="index.html">Return to List</NavLink>
                 </div>
             </div>
 

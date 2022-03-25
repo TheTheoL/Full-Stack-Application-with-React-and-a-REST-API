@@ -23,7 +23,7 @@ export default class App extends Component {
         <div>
           <Header />
 
-          <Route path="/" component={Courses} />
+          <Route exact path="/" component={Courses} />
           <Route path="/courses/:id" component={CourseDetail} />
 
         </div>

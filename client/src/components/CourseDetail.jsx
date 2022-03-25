@@ -10,7 +10,7 @@ export default function CourseDetail(props) {
         axios.get("http://localhost:5000/api/courses/")
             .then(res => setState(res.data)
             )
-    })
+    }, [])
 
     return (
         <main>

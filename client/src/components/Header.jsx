@@ -10,7 +10,7 @@ const Header = () => {
                 <nav>
                     <ul className="header--signedout">
                         <li><a href="sign-up.html">Sign Up</a></li>
-                        <li><a href="sign-in.html">Sign In</a></li>
+                        <li><NavLink to="/signin">Sign In</NavLink></li>
                     </ul>
                 </nav>
             </div>

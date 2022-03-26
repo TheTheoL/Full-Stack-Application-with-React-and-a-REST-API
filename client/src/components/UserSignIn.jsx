@@ -12,6 +12,9 @@ export default function UserSignIn() {
         cancel();
     }
 
+    const [emailAddress, setEmailAddress] = setState('');
+    const [password, setPassword] = setState('');
+
     return (
         <div className="form--centered">
             <h2>Sign In</h2>

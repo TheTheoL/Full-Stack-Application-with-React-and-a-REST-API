@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function UserSignIn() {
+export default function UserSignIn(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -12,8 +12,8 @@ export default function UserSignIn() {
         cancel();
     }
 
-    const [emailAddress, setEmailAddress] = setState('');
-    const [password, setPassword] = setState('');
+    const [emailAddress, setEmailAddress] = useState('');
+    const [password, setPassword] = useState('');
 
     return (
         <div className="form--centered">
@@ -23,7 +23,7 @@ export default function UserSignIn() {
                 <input id="emailAddress" name="emailAddress" type="email" defaultValue="" />
                 <label htmlFor="password">Password</label>
                 <input id="password" name="password" type="password" defaultValue="" />
-                <button className="button" type="submit" onClick={handleSubmit}>Sign In</button><button className="button button-secondary" onClick={handleCancel}>Cancel</button>
+                <button className="button" type="submit" onClick={props.handleSubmit}>Sign In</button><button className="button button-secondary" onClick={props.handleCancel}>Cancel</button>
             </form>
             <p>Don't have a user account? Click here to <a href="sign-up.html">sign up</a>!</p>
         </div>

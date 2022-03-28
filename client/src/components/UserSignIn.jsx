@@ -1,35 +1,93 @@
-import React, { useContext, useState } from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import Form from './Form';
 
-export default function UserSignIn(props) {
+export default class UserSignIn extends Component {
 
-    const [emailAddress, setEmailAddress] = useState('');
-    const [password, setPassword] = useState('');
-
-    function handleSubmit(event) {
-        event.preventDefault();
-
-    }
-
-    function handleCancel(event) {
-        event.preventDefault();
+    state = {
+        emailAddress: '',
+        password: '',
 
     }
 
+    render() {
+        const {
+            emailAddress,
+            password,
+
+        } = this.state;
+
+        return (
+            <div className="form--centered">
+                <h2>Sign In</h2>
+                <Form
+                    cancel={this.cancel}
+                    submit={this.submit}
+                    submitButtonText="Sign In"
+                    elements={() => (
+                        <React.Fragment>
+
+                            <label htmlFor="emailAddress">Email Address</label>
+                            <input
+                                id="emailAddress"
+                                name="emailAddress"
+                                type="email"
+                                value={emailAddress}
+                                onChange={this.change}
+                                defaultValue="" />
+                            <label htmlFor="password">Password</label>
+                            <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                value={password}
+                                onChange={this.change}
+                                defaultValue="" />
+                        </React.Fragment>
+                    )} />
 
 
-    return (
-        <div className="form--centered">
-            <h2>Sign In</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="emailAddress">Email Address</label>
-                <input id="emailAddress" name="emailAddress" type="email" defaultValue="" />
-                <label htmlFor="password">Password</label>
-                <input id="password" name="password" type="password" defaultValue="" />
-                <button className="button" type="submit" onClick={handleSubmit}>Sign In</button><button className="button button-secondary" onClick={handleCancel}>Cancel</button>
-            </form>
-            <p>Don't have a user account? Click here to <NavLink to='/usersignup'>sign up</NavLink>!</p>
-        </div>
-    );
+                <p>Don't have a user account? Click here to <NavLink to='/usersignup'>sign up</NavLink>!</p>
+            </div >
+        );
+    }
+
+    change = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        this.setState(() => {
+            return {
+                [name]: value
+            };
+        });
+    }
+
+    submit = () => {
+        const { context } = this.props;
+        const { from } = this.props.location.state || { from: { pathname: '/authenticated' } };
+        const { emailAddress, password } = this.state;
+
+        context.actions.signIn(emailAddress, password)
+            .then((user) => {
+                if (user === null) {
+                    this.setState(() => {
+                        return { errors: ['Sign-in was unsuccessful'] };
+                    });
+                } else {
+                    this.props.history.push(from);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                this.props.history.push('/error');
+            });
+    }
+
+    cancel = () => {
+        this.props.history.push('/');
+    }
 }
+
+
 

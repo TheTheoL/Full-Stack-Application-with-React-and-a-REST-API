@@ -19,7 +19,7 @@ export default function CourseDetail(props) {
                 <div className="wrap">
                     <NavLink className="button" to="#"> Update Course</NavLink>
                     <NavLink className="button" to="#">Delete Course</NavLink>
-                    <NavLink className="button button-secondary" to="#">Return to List</NavLink>
+                    <NavLink className="button button-secondary" to="/">Return to List</NavLink>
                 </div>
             </div>
 

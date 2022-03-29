@@ -24,7 +24,7 @@ const CourseDetailWithContext = withContext(CourseDetail);
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
-
+const NotFoundWithContext = withContext(NotFound);
 
 export default class App extends Component {
 
@@ -40,7 +40,7 @@ export default class App extends Component {
             <Route path="/signin" component={UserSignInWithContext} />
             <Route path="/signup" component={UserSignUpWithContext} />
             <Route path="/signout" component={UserSignOutWithContext} />
-            <Route component={NotFound} />
+            <Route component={NotFoundWithContext} />
 
           </div>
         </Provider>

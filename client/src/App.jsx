@@ -16,6 +16,7 @@ import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
 import UserSignOut from './components/UserSignOut';
 import NotFound from './components/NotFound';
+import Forbidden from './components/Forbidden';
 
 //components with context 
 const HeaderWithContext = withContext(Header);
@@ -35,12 +36,15 @@ export default class App extends Component {
           <div>
             <HeaderWithContext />
 
-            <Route exact path="/" component={CoursesWithContext} />
-            <Route path="/courses/:id" component={CourseDetailWithContext} />
-            <Route path="/signin" component={UserSignInWithContext} />
-            <Route path="/signup" component={UserSignUpWithContext} />
-            <Route path="/signout" component={UserSignOutWithContext} />
-            <Route component={NotFoundWithContext} />
+            <Switch>
+              <Route exact path="/" component={CoursesWithContext} />
+              <Route path="/courses/:id" component={CourseDetailWithContext} />
+              <Route path="/signin" component={UserSignInWithContext} />
+              <Route path="/signup" component={UserSignUpWithContext} />
+              <Route path="/signout" component={UserSignOutWithContext} />
+              <Route component={NotFoundWithContext} />
+              <Route exact path="/forbidden" component={Forbidden} />
+            </Switch>
 
           </div>
         </Provider>

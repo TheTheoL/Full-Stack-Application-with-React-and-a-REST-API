@@ -34,7 +34,7 @@ export default class UserSignIn extends Component {
                                 type="email"
                                 value={emailAddress}
                                 onChange={this.change}
-                                defaultValue="" />
+                            />
                             <label htmlFor="password">Password</label>
                             <input
                                 id="password"
@@ -42,7 +42,7 @@ export default class UserSignIn extends Component {
                                 type="password"
                                 value={password}
                                 onChange={this.change}
-                                defaultValue="" />
+                            />
                         </React.Fragment>
                     )} />
 

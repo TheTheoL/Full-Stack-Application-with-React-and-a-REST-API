@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Form from './Form';
 
 export default class UserSignIn extends Component {
@@ -14,7 +14,7 @@ export default class UserSignIn extends Component {
         const {
             emailAddress,
             password,
-
+            errors,
         } = this.state;
 
         return (
@@ -22,6 +22,7 @@ export default class UserSignIn extends Component {
                 <h2>Sign In</h2>
                 <Form
                     cancel={this.cancel}
+                    errors={errors}
                     submit={this.submit}
                     submitButtonText="Sign In"
                     elements={() => (
@@ -47,7 +48,7 @@ export default class UserSignIn extends Component {
                     )} />
 
 
-                <p>Don't have a user account? Click here to <NavLink to='/usersignup'>sign up</NavLink>!</p>
+                <p>Don't have a user account? Click here to <Link to='/signup'>sign up</Link>!</p>
             </div >
         );
     }
@@ -80,7 +81,7 @@ export default class UserSignIn extends Component {
             })
             .catch((error) => {
                 console.error(error);
-                this.props.history.push('/error');
+                this.props.history.push('/forbidden');
             });
     }
 

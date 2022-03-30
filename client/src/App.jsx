@@ -17,6 +17,7 @@ import UserSignUp from './components/UserSignUp';
 import UserSignOut from './components/UserSignOut';
 import NotFound from './components/NotFound';
 import Forbidden from './components/Forbidden';
+import Error from './components/Error';
 
 //components with context 
 const HeaderWithContext = withContext(Header);
@@ -44,6 +45,7 @@ export default class App extends Component {
               <Route path="/signout" component={UserSignOutWithContext} />
               <Route component={NotFoundWithContext} />
               <Route exact path="/forbidden" component={Forbidden} />
+              <Route exact path="/error" component={Error} />
             </Switch>
 
           </div>

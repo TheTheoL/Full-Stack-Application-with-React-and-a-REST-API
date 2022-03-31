@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 
 
 export default function CreateCourse() {
@@ -16,10 +17,14 @@ export default function CreateCourse() {
 
         fetch('http://localhost:5000/api/courses', {
             method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newCourse)
-        }).then(() => {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": 'Basic' + authenticatedUser
+            },
+            body: JSON.stringify({
+                newCourse,
 
+            })
         })
     }
 
@@ -36,21 +41,41 @@ export default function CreateCourse() {
                             <label htmlFor="courseTitle">Course Title</label>
                             <input
                                 id="courseTitle"
-                                name="courseTitle" type="text"
-                                defaultValue="" />
+                                name="courseTitle"
+                                type="text"
+                                value={title}
+                                defaultValue=""
+                                onChange={(e) => setTitle(e.tartget.value)} />
 
                             <p>By </p>
+
                             <label htmlFor="courseDescription">Course Description</label>
-                            <textarea id="courseDescription" name="courseDescription" defaultValue={""} />
+                            <textarea
+                                id="courseDescription"
+                                name="courseDescription"
+                                value={description}
+                                defaultValue={""}
+                                onChange={(e) => setDescription(e.target.value)} />
                         </div>
                         <div>
                             <label htmlFor="estimatedTime">Estimated Time</label>
-                            <input id="estimatedTime" name="estimatedTime" type="text" defaultValue="" />
+                            <input
+                                id="estimatedTime"
+                                name="estimatedTime"
+                                type="text"
+                                value={estimatedTime}
+                                defaultValue=""
+                                onChange={(e) => setEstimatedTime(e.target.value)} />
                             <label htmlFor="materialsNeeded">Materials Needed</label>
-                            <textarea id="materialsNeeded" name="materialsNeeded" defaultValue={""} />
+                            <textarea
+                                id="materialsNeeded"
+                                name="materialsNeeded"
+                                value={materialsNeeded}
+                                defaultValue={""}
+                                onChange={(e) => setMaterialsNeeded(e.target.value)} />
                         </div>
                     </div>
-                    <button className="button" type="submit">Create Course</button><Link to="/"><button className="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button></Link>
+                    <button className="button" type="submit" onChange={addNewCourse}>Create Course</button><Link to="/"><button className="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button></Link>
                 </form>
             </div>
         </main>

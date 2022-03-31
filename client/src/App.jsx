@@ -18,6 +18,7 @@ import UserSignOut from './components/UserSignOut';
 import NotFound from './components/NotFound';
 import Forbidden from './components/Forbidden';
 import Error from './components/Error';
+import CreateCourse from './components/CreateCourse';
 
 //components with context 
 const HeaderWithContext = withContext(Header);
@@ -27,6 +28,7 @@ const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
 const NotFoundWithContext = withContext(NotFound);
+const CreateCourseWithContext = withContext(CreateCourse);
 
 export default class App extends Component {
 
@@ -43,6 +45,7 @@ export default class App extends Component {
               <Route path="/signin" component={UserSignInWithContext} />
               <Route path="/signup" component={UserSignUpWithContext} />
               <Route path="/signout" component={UserSignOutWithContext} />
+              <Route path="/createcourse" component={CreateCourseWithContext} />
               <Route component={NotFoundWithContext} />
               <Route exact path="/forbidden" component={Forbidden} />
               <Route exact path="/error" component={Error} />

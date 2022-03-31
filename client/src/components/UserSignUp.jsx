@@ -25,7 +25,7 @@ export default class UserSignUp extends Component {
                 <Form
                     cancel={this.cancel}
                     submit={this.submit}
-                    submitButtonText="Sign In"
+                    submitButtonText="Sign Up"
                     elements={() => (
                         <React.Fragment>
                             <label>First Name</label>

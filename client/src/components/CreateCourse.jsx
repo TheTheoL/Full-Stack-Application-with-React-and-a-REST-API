@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Context } from '../Context';
 
 
-export default function CreateCourse() {
+export default function CreateCourse({ history }) {
+
 
     const context = useContext(Context);
 
@@ -12,24 +13,33 @@ export default function CreateCourse() {
     const [estimatedTime, setEstimatedTime] = useState('');
     const [description, setDescription] = useState('');
     const [materialsNeeded, setMaterialsNeeded] = useState('');
+    const [errors, setErrors] = useState([]);
 
-    const encodedCredentials = btoa(`${context.authenticatedUser.username}:${context.authenticatedUser.password}`);
+
 
     const addNewCourse = (e) => {
         e.preventDefault();
-        const newCourse = { title, estimatedTime, description, materialsNeeded }
+        const newCourse = { title, estimatedTime, description, materialsNeeded, userId: context.authenticatedUser.id }
+
+        const encodedCredentials = btoa(`${context.authenticatedUser.emailAddress}:${context.authenticatedUser.password}`);
 
         fetch('http://localhost:5000/api/courses', {
             method: 'POST',
             headers: {
-                "Content- Type": "application/json",
+                "Content-Type": "application/json",
                 "Authorization": `Basic ${encodedCredentials}`
             },
-            body: JSON.stringify({
-                newCourse,
+            body: JSON.stringify(newCourse)
+        })
+            .then(res => {
+                if (res.status === 400) {
+                    res.json()
+                        .then(data => setErrors(data))
+                } else {
+                    history.push('/');
+                }
 
             })
-        })
     }
 
 
@@ -37,15 +47,25 @@ export default function CreateCourse() {
     return (
         <main>
             <div className="wrap">
+
+
+                <div class="validation--errors">
+                    <h3>Validation Errors</h3>
+                    <ul>
+                        <li>Please provide a value for "Title"</li>
+                        <li>Please provide a value for "Description"</li>
+                    </ul>
+                </div>
+
                 <h2>Create Course</h2>
 
-                <form>
+                <form onSubmit={addNewCourse}>
                     <div className="main--flex">
                         <div>
                             <label htmlFor="courseTitle">Course Title</label>
                             <input
                                 id="courseTitle"
-                                name="courseTitle"
+                                name="title"
                                 type="text"
                                 value={title}
                                 defaultValue=""
@@ -56,7 +76,7 @@ export default function CreateCourse() {
                             <label htmlFor="courseDescription">Course Description</label>
                             <textarea
                                 id="courseDescription"
-                                name="courseDescription"
+                                name="description"
                                 value={description}
                                 defaultValue={""}
                                 onChange={(e) => setDescription(e.target.value)} />
@@ -79,7 +99,7 @@ export default function CreateCourse() {
                                 onChange={(e) => setMaterialsNeeded(e.target.value)} />
                         </div>
                     </div>
-                    <button className="button" type="submit" onChange={addNewCourse}>Create Course</button><Link to="/"><button className="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button></Link>
+                    <button className="button" type="submit">Create Course</button><Link to="/"><button className="button button-secondary" onClick="event.preventDefault(); location.href='index.html';">Cancel</button></Link>
                 </form>
             </div>
         </main>

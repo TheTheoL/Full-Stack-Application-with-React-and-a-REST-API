@@ -19,7 +19,7 @@ export default function CreateCourse() {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": 'Basic' + authenticatedUser
+                "Authorization": 'Basic' + 
             },
             body: JSON.stringify({
                 newCourse,

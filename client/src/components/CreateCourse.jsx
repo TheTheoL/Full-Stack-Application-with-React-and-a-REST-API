@@ -49,7 +49,7 @@ export default function CreateCourse() {
                                 type="text"
                                 value={title}
                                 defaultValue=""
-                                onChange={(e) => setTitle(e.tartget.value)} />
+                                onChange={(e) => setTitle(e.target.value)} />
 
                             <p>By </p>
 

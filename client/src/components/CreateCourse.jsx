@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-
+import { Context } from '../Context';
 
 
 export default function CreateCourse() {
+
+    const context = useContext(Context);
 
     //state
     const [title, setTitle] = useState('');
     const [estimatedTime, setEstimatedTime] = useState('');
     const [description, setDescription] = useState('');
     const [materialsNeeded, setMaterialsNeeded] = useState('');
+
+    const encodedCredentials = btoa(`${context.authenticatedUser.username}:${context.authenticatedUser.password}`);
 
     const addNewCourse = (e) => {
         e.preventDefault();
@@ -18,8 +22,8 @@ export default function CreateCourse() {
         fetch('http://localhost:5000/api/courses', {
             method: 'POST',
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": 'Basic' + 
+                "Content- Type": "application/json",
+                "Authorization": `Basic ${encodedCredentials}`
             },
             body: JSON.stringify({
                 newCourse,

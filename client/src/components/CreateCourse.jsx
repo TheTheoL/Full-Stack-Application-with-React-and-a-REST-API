@@ -37,7 +37,7 @@ export default function CreateCourse({ history }) {
             .then(res => {
                 if (res.status === 400) {
                     res.json()
-                        .then(data => setErrors(data))
+                        .then(data => setErrors(data.errors))
                 } else {
                     history.push('/');
                 }

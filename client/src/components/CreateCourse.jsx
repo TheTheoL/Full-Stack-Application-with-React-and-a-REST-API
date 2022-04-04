@@ -15,7 +15,10 @@ export default function CreateCourse({ history }) {
     const [materialsNeeded, setMaterialsNeeded] = useState('');
     const [errors, setErrors] = useState([]);
 
-
+    function handleCancel(event) {
+        event.preventDefault();
+        history.push('/');
+    }
 
     const addNewCourse = (e) => {
         e.preventDefault();
@@ -42,20 +45,36 @@ export default function CreateCourse({ history }) {
             })
     }
 
+    const validateForm = () => {
+        if (errors.length > 0) {
+            return (
+                <div className="validation--errors">
+                    <h3>Validation Errors</h3>
+                    <ul>
+                        {
+                            errors.map((error, i) => {
+                                return (
+                                    <li key={i}>{error}</li>
+                                );
+
+                            }
+
+
+
+                            )}
+                    </ul>
+                </div>
+            );
+        }
+    }
 
 
     return (
         <main>
             <div className="wrap">
 
+                {validateForm}
 
-                <div class="validation--errors">
-                    <h3>Validation Errors</h3>
-                    <ul>
-                        <li>Please provide a value for "Title"</li>
-                        <li>Please provide a value for "Description"</li>
-                    </ul>
-                </div>
 
                 <h2>Create Course</h2>
 
@@ -99,7 +118,7 @@ export default function CreateCourse({ history }) {
                                 onChange={(e) => setMaterialsNeeded(e.target.value)} />
                         </div>
                     </div>
-                    <button className="button" type="submit">Create Course</button><Link to="/"><button className="button button-secondary" onClick="event.preventDefault(); location.href='index.html';">Cancel</button></Link>
+                    <button className="button" type="submit">Create Course</button><button className="button button-secondary" onClick={handleCancel}>Cancel</button>
                 </form>
             </div>
         </main>

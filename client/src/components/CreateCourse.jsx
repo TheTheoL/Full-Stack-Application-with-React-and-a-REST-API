@@ -47,24 +47,21 @@ export default function CreateCourse({ history }) {
 
     const validateForm = () => {
         if (errors.length > 0) {
-            return (
-                <div className="validation--errors">
-                    <h3>Validation Errors</h3>
-                    <ul>
-                        {
-                            errors.map((error, i) => {
-                                return (
-                                    <li key={i}>{error}</li>
-                                );
 
-                            }
+            <div className="validation--errors">
+                <h3>Validation Errors</h3>
+                <ul>
+                    {
+                        errors.map((error, i) => (
+                            <li key={error.i}>{error}</li>
+                        )
 
+                        )}
+                </ul>
+            </div>
 
-
-                            )}
-                    </ul>
-                </div>
-            );
+        } else {
+            return null;
         }
     }
 

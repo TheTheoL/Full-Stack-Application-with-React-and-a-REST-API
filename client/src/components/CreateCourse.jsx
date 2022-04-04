@@ -19,6 +19,7 @@ export default function CreateCourse({ history }) {
         history.push('/');
     }
 
+
     const addNewCourse = (e) => {
         e.preventDefault();
         const newCourse = { title, estimatedTime, description, materialsNeeded, userId: context.authenticatedUser.id }
@@ -44,35 +45,28 @@ export default function CreateCourse({ history }) {
             })
     }
 
-    const validateForm = () => {
-        if (errors.length > 0) {
-
-            <div className="validation--errors">
-                <h3>Validation Errors</h3>
-                <ul>
-                    {
-                        errors.map((error, i) => (
-                            <li key={error.i}>{error}</li>
-                        )
-
-                        )}
-                </ul>
-            </div>
-
-        } else {
-            return null;
-        }
-    }
-
-
     return (
         <main>
             <div className="wrap">
 
-                {validateForm}
-
-
                 <h2>Create Course</h2>
+
+                {errors.length > 0 ? (
+                    <div className="validation--errors">
+                        <h3>Validation Errors</h3>
+                        <ul>
+                            {
+                                errors.map((error, i) => {
+                                    return (<li key={i}>{error}</li>)
+                                })
+                            }
+                        </ul>
+                    </div>
+                ) : (
+                    null
+                )
+
+                }
 
                 <form onSubmit={addNewCourse}>
                     <div className="main--flex">
@@ -83,7 +77,7 @@ export default function CreateCourse({ history }) {
                                 name="title"
                                 type="text"
                                 value={title}
-                                defaultValue=""
+
                                 onChange={(e) => setTitle(e.target.value)} />
 
                             <p>By </p>
@@ -93,7 +87,7 @@ export default function CreateCourse({ history }) {
                                 id="courseDescription"
                                 name="description"
                                 value={description}
-                                defaultValue={""}
+
                                 onChange={(e) => setDescription(e.target.value)} />
                         </div>
                         <div>
@@ -103,14 +97,14 @@ export default function CreateCourse({ history }) {
                                 name="estimatedTime"
                                 type="text"
                                 value={estimatedTime}
-                                defaultValue=""
+
                                 onChange={(e) => setEstimatedTime(e.target.value)} />
                             <label htmlFor="materialsNeeded">Materials Needed</label>
                             <textarea
                                 id="materialsNeeded"
                                 name="materialsNeeded"
                                 value={materialsNeeded}
-                                defaultValue={""}
+
                                 onChange={(e) => setMaterialsNeeded(e.target.value)} />
                         </div>
                     </div>

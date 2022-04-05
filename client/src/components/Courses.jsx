@@ -47,7 +47,6 @@ export default class Courses extends Component {
 }
 
 
-//need to be able to click on a course and have the specific course's detail page render. 
-//need to be able to click on the 'new course' button and have the new-course form page appear. 
+
 
 

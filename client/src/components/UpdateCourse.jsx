@@ -1,6 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Context } from '../Context';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export default function UpdateCourse({ history }) {
 
@@ -14,10 +15,11 @@ export default function UpdateCourse({ history }) {
     const [description, setDescription] = useState('');
     const [materialsNeeded, setMaterialsNeeded] = useState('');
     const [errors, setErrors] = useState([]);
+    const [course, setCourse] = useState('')
 
     function handleCancel(event) {
         event.preventDefault();
-        history.push(`/courses/${id}`);
+        history.push(`/courses/${course.id}`);
     }
 
     const updateCourse = (e) => {
@@ -44,6 +46,17 @@ export default function UpdateCourse({ history }) {
 
             })
     }
+
+    useEffect(() => {
+        axios.get(`http://localhost:5000/api/courses/${id}`)
+            .then(res => {
+                setTitle(res.data.title);
+                setDescription(res.data.description);
+                setEstimatedTime(res.data.estimatedTime);
+                setMaterialsNeeded(res.data.materialsNeeded);
+            })
+            .catch(err => { console.log('Oh no! Something went wrong fetching data', err); })
+    }, [id]);
 
 
 
@@ -87,7 +100,7 @@ export default function UpdateCourse({ history }) {
                             <label htmlFor="courseDescription">Course Description</label>
                             <textarea
                                 id="courseDescription" name="description"
-                                defaultValue={description}
+                                value={description}
                                 onChange={(e) => setDescription(e.target.value)} />
                         </div>
                         <div>

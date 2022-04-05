@@ -7,6 +7,8 @@ export default function CourseDetail(props) {
 
     const [course, setCourse] = useState('')
 
+
+
     useEffect(() => {
         axios.get("http://localhost:5000/api/courses/" + props.match.params.id)
             .then(res => setCourse(res.data)

@@ -1,12 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../Context';
-import { useParams } from 'react-router-dom';
 
-export default function UpdateCourse({ history }) {
+
+export default function UpdateCourse({ history, props }) {
 
     const context = useContext(Context);
-    //per ReactRouter: useParams returns an object of key/value pairs of URL parameters. Use it to access match.params of the current <Route>.
-    let { id } = useParams();
+
 
     //state
     const [title, setTitle] = useState('');
@@ -17,7 +16,7 @@ export default function UpdateCourse({ history }) {
 
     function handleCancel(event) {
         event.preventDefault();
-        history.push(`/courses/${id}`);
+        history.push("/courses/" + props.match.params.id);
     }
 
     const updateCourse = (e) => {
@@ -26,7 +25,7 @@ export default function UpdateCourse({ history }) {
 
         const encodedCredentials = btoa(`${context.authenticatedUser.emailAddress}:${context.authenticatedUser.password}`);
 
-        fetch(`http://localhost:5000/api/courses/${id}`, {
+        fetch("http://localhost:5000/api/courses/" + props.match.params.id, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -87,7 +86,7 @@ export default function UpdateCourse({ history }) {
                             <label htmlFor="courseDescription">Course Description</label>
                             <textarea
                                 id="courseDescription" name="description"
-                                value={description}
+                                defaultValue={description}
                                 onChange={(e) => setDescription(e.target.value)} />
                         </div>
                         <div>
@@ -103,6 +102,7 @@ export default function UpdateCourse({ history }) {
                                 id="materialsNeeded"
                                 name="materialsNeeded"
                                 value={materialsNeeded}
+                                onChange={(e) => setMaterialsNeeded(e.target.value)}
                             />
                         </div>
                     </div>

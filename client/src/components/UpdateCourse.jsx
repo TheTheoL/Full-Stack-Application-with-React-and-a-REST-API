@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../Context';
+import { useParams } from 'react-router-dom';
 
-
-export default function UpdateCourse({ history, props }) {
+export default function UpdateCourse({ history }) {
 
     const context = useContext(Context);
-
+    //per ReactRouter: useParams returns an object of key/value pairs of URL parameters. Use it to access match.params of the current <Route>.
+    let { id } = useParams();
 
     //state
     const [title, setTitle] = useState('');
@@ -16,7 +17,7 @@ export default function UpdateCourse({ history, props }) {
 
     function handleCancel(event) {
         event.preventDefault();
-        history.push("/courses/" + props.match.params.id);
+        history.push(`/courses/${id}`);
     }
 
     const updateCourse = (e) => {
@@ -25,7 +26,7 @@ export default function UpdateCourse({ history, props }) {
 
         const encodedCredentials = btoa(`${context.authenticatedUser.emailAddress}:${context.authenticatedUser.password}`);
 
-        fetch("http://localhost:5000/api/courses/" + props.match.params.id, {
+        fetch(`http://localhost:5000/api/courses/${id}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",

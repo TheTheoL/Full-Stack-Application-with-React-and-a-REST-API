@@ -103,10 +103,10 @@ export default function UpdateCourse({ history }) {
                                 id="materialsNeeded"
                                 name="materialsNeeded"
                                 value={materialsNeeded}
-                                onChange={(e) => setMaterialsNeeded(e.target.value)} />
+                            />
                         </div>
                     </div>
-                    <button className="button" type="submit">Update Course</button><button className="button button-secondary" onclick={handleCancel}>Cancel</button>
+                    <button className="button" type="submit">Update Course</button><button className="button button-secondary" onClick={handleCancel}>Cancel</button>
                 </form>
             </div>
         </main>

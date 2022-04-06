@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Context } from '../Context';
 import { useParams } from 'react-router-dom';
-import { useHistory } from "react-router-dom"
+
 
 
 export default function CourseDetail({ history }) {

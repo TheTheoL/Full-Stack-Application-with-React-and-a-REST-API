@@ -15,6 +15,10 @@ export default function CourseDetail(props) {
             )
     }, [])
 
+    function deleteCourse() {
+
+    }
+
     return (
         <main>
             <div className="actions--bar">

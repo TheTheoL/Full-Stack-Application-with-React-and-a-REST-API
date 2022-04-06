@@ -48,17 +48,7 @@ export default function UpdateCourse({ history }) {
 
             })
     }
-    //gets course info to remain in the inputs and does not make it so a blank course form populates.
-    useEffect(() => {
-        axios.get(`http://localhost:5000/api/courses/${id}`)
-            .then(res => {
-                setTitle(res.data.title);
-                setDescription(res.data.description);
-                setEstimatedTime(res.data.estimatedTime);
-                setMaterialsNeeded(res.data.materialsNeeded);
-            })
-            .catch(err => { console.log('Oh no! Something went wrong fetching data', err); })
-    }, [id]);
+
 
 
 

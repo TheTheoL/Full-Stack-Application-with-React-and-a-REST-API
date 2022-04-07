@@ -3,6 +3,8 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
 
+//This component provides the "Courses" screen by retrieving the list of courses from the REST API's /api/courses route and rendering a list of courses.
+
 export default class Courses extends Component {
 
     state = {

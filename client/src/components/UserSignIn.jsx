@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
 
-
+//Component that handles the singin and validation for registered users to be able to add and update courses
 export default class UserSignIn extends Component {
 
     state = {

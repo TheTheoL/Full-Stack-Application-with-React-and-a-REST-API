@@ -3,6 +3,8 @@ import { Context } from '../Context';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+
+//Component that allows an authorized user to go in and update course only they created. Validation makes sure they are authorized to edit courses only they have made. 
 export default function UpdateCourse({ history }) {
 
     const context = useContext(Context);
@@ -28,7 +30,7 @@ export default function UpdateCourse({ history }) {
         e.preventDefault();
         const updatedCourse = { title, estimatedTime, description, materialsNeeded, userId: context.authenticatedUser.id }
 
-        const encodedCredentials = btoa(`${context.authenticatedUser.emailAddress}:${context.authenticatedUser.password}`);
+        const encodedCredentials = btoa(`${context.autexthenticatedUser.emailAddress}:${context.authenticatedUser.password}`);
 
         fetch(`http://localhost:5000/api/courses/${id}`, {
             method: 'PUT',

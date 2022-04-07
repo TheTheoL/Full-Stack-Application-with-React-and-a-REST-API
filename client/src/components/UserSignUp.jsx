@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Form from './Form';
 
+
+//Component that displays the signup page for someone to sign up and become an authorized user. 
 export default class UserSignUp extends Component {
     state = {
         firstName: '',

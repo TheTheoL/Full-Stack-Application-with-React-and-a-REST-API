@@ -7,20 +7,41 @@ export default class UserSignUp extends Component {
         firstName: '',
         lastName: '',
         emailAddress: '',
-        password: ''
+        password: '',
+        errors: ''
     }
+
+
 
     render() {
         const {
             firstName,
             lastName,
             emailAddress,
-            password
+            password,
+            errors
         } = this.state;
 
         return (
             <div className="form--centered">
                 <h2>Sign Up</h2>
+
+                {this.state.errors.length > 0 ? (
+                    <div className="validation--errors">
+                        <h3>Validation Errors</h3>
+                        <ul>
+                            {
+                                errors.map((error, i) => {
+                                    return (<li key={i}>{error}</li>)
+                                })
+                            }
+                        </ul>
+                    </div>
+                ) : (
+                    null
+                )
+
+                }
 
                 <Form
                     cancel={this.cancel}
@@ -89,7 +110,8 @@ export default class UserSignUp extends Component {
             firstName,
             lastName,
             emailAddress,
-            password,
+            password
+
         };
 
         context.data.createUser(user)

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Context } from '../Context';
 import { useParams } from 'react-router-dom';
+import Courses from './Courses';
 
 
 
@@ -59,8 +60,14 @@ export default function CourseDetail({ history }) {
         <main>
             <div className="actions--bar">
                 <div className="wrap">
-                    <NavLink className="button" to={`/courses/${course.id}/update`}>Update Course</NavLink>
-                    <NavLink className="button" to="/" onClick={deleteCourse}>Delete Course</NavLink>
+                    {/* buttons only display if the authenticated user is the owner of the course */}
+                    {context.authenticatedUser && context.authenticatedUser.id === course.userId ? (
+                        <span>
+                            <NavLink className="button" to={`/courses/${course.id}/update`}>Update Course</NavLink>
+                            <NavLink className="button" to="/" onClick={deleteCourse}>Delete Course</NavLink>
+                        </span>
+                    ) : (null)}
+
                     <NavLink className="button button-secondary" to="/">Return to List</NavLink>
                 </div>
             </div>

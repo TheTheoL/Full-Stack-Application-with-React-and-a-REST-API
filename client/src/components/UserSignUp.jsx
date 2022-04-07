@@ -10,7 +10,7 @@ export default class UserSignUp extends Component {
         lastName: '',
         emailAddress: '',
         password: '',
-        errors: []
+        errors: [],
     }
 
 
@@ -21,7 +21,7 @@ export default class UserSignUp extends Component {
             lastName,
             emailAddress,
             password,
-            errors = []
+            errors,
         } = this.state;
 
         return (

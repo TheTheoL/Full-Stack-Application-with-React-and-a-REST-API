@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Context } from '../Context';
 import { useParams } from 'react-router-dom';
-import Courses from './Courses';
+
 
 
 //This component provides the "Course Detail" screen by retrieving the detail for a course from the REST API's /api/courses/:id route and rendering the course.

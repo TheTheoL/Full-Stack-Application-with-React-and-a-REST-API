@@ -17,11 +17,11 @@ export default function CourseDetail({ history }) {
 
     //state
     const [course, setCourse] = useState('')
-    const [title, setTitle] = useState('');
-    const [estimatedTime, setEstimatedTime] = useState('');
-    const [description, setDescription] = useState('');
-    const [materialsNeeded, setMaterialsNeeded] = useState('');
-    const [errors, setErrors] = useState([]);
+    const [title] = useState('');
+    const [estimatedTime] = useState('');
+    const [description] = useState('');
+    const [materialsNeeded] = useState('');
+    const [setErrors] = useState([]);
 
 
 

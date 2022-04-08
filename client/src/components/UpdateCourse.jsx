@@ -17,12 +17,12 @@ export default function UpdateCourse({ history }) {
     const [description, setDescription] = useState('');
     const [materialsNeeded, setMaterialsNeeded] = useState('');
     const [errors, setErrors] = useState([]);
-    const [course, setCourse] = useState('')
+
 
     //handles when user clicks cancel
     function handleCancel(event) {
         event.preventDefault();
-        history.push(`/courses/${course.id}`);
+        history.push(`/courses/${id}`);
     }
 
     //to update a course
@@ -30,7 +30,7 @@ export default function UpdateCourse({ history }) {
         e.preventDefault();
         const updatedCourse = { title, estimatedTime, description, materialsNeeded, userId: context.authenticatedUser.id }
 
-        const encodedCredentials = btoa(`${context.autexthenticatedUser.emailAddress}:${context.authenticatedUser.password}`);
+        const encodedCredentials = btoa(`${context.authenticatedUser.emailAddress}:${context.authenticatedUser.password}`);
 
         fetch(`http://localhost:5000/api/courses/${id}`, {
             method: 'PUT',
